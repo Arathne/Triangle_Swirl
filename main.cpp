@@ -9,7 +9,7 @@
 #define PI 3.14159
 
 void processKeyboard (void);
-
+sf::Text createText (std::string name, float value, sf::Font font, int x, int y);
 std::vector<sf::CircleShape> buffer;
 
 float radius = 300;
@@ -21,6 +21,8 @@ bool completed = false;
 
 int main ()
 {
+	std::cout << "A/Z: Timer\n" << "S/X: Radius Inc (how fast the triangle gets smaller)\n" << "D/C: Angle Inc (how fast the triangle rotates)" << std::endl;
+	
 	sf::RenderWindow window (sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Rainbow Swirl");
 	sf::Clock clock;
 	
@@ -83,19 +85,24 @@ int main ()
 			lastDraw = currentDraw;
 		}
 		
-		sf::Text timeText;
-		timeText.setFont(font);
-		timeText.setString("TIMER");
-		timeText.setPosition(0,0);
-		timeText.setCharacterSize(30);
-		timeText.setFillColor(sf::Color::Red);
-		window.draw(timeText);
+		window.draw( createText("Timer", (float) timer, font, 0, 0) );
+		window.draw( createText("Radius Inc", radiusInc, font, 0, 32) );
+		window.draw( createText("Angle Inc", angleInc, font, 0, 64) );
 		
 		//swap buffers
 		window.display();
 	}
 	
 	return 0;
+}
+
+sf::Text createText (std::string name, float value, sf::Font font, int x, int y)
+{
+	std::string textName = name + ": " + std::to_string(value);
+	sf::Text text(textName, font);
+	text.setFillColor(sf::Color::Red);
+	text.setPosition(x, y);
+	return text;
 }
 
 void processKeyboard (void)
@@ -139,8 +146,4 @@ void processKeyboard (void)
 		if (angleInc < 0)
 			angleInc = 0;
 	}
-
-	std::cout << "TIME: " << timer << std::endl;
-	std::cout << "RADIUS INC: " << radiusInc << std::endl;
-	std::cout << "ANGLE INC: " << angleInc << std::endl;
 }
