@@ -12,4 +12,6 @@ find_package( OpenGL REQUIRED )
 find_package( SFML 2.5 COMPONENTS graphics system REQUIRED )
 
 add_executable( rainbow main.cpp )
+
+target_compile_definitions( rainbow PRIVATE FONT="${CMAKE_CURRENT_SOURCE_DIR}/arial.ttf" )
 target_link_libraries( rainbow sfml-graphics OpenGL::GL )
