@@ -10,6 +10,9 @@
 #### edit variables to create a completely new shape
 #### animates instead of drawing it instantly
 
+### LEARNED
+#### the main thing I learned from this project is how to use sfml. When animating the triangle, I was using delta time which resulted in the triangles rotating and scaling at different angles. It was very inconsistent which is why I changed to a timer resulting in a much smoother experience. Keyboard inputs and drawing onto a window is something I have done before, it just came down to learning how to do it with sfml
+
 ### DEPENDENCIES
 #### cmake
 ```sh
