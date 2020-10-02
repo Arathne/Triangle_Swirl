@@ -36,7 +36,7 @@ int main ()
 
 	while (window.isOpen())
 	{
-		//process all events
+		/* process events */
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -46,10 +46,8 @@ int main ()
 				processKeyboard();
 		}
 		
-		//clear window
 		window.clear();
 		
-		//draw triangles
 		/* draw all triangles in buffer */
 		for (int i = 0; i < buffer.size(); i++ )
 			window.draw(buffer.at(i));
@@ -85,11 +83,11 @@ int main ()
 			lastDraw = currentDraw;
 		}
 		
+		/* draw text info */
 		window.draw( createText("Timer", (float) timer, font, 0, 0) );
 		window.draw( createText("Radius Inc", radiusInc, font, 0, 32) );
 		window.draw( createText("Angle Inc", angleInc, font, 0, 64) );
 		
-		//swap buffers
 		window.display();
 	}
 	
